@@ -94,14 +94,14 @@ char * toString(int id){
 
 }
 
-void cargarDatosUsuario(char * nombreUsuario){
+void cargarDatosUsuario(char * nombreUsuario){ //se cargan los datos del usuario 
 
     printf("Se cargan los datos\n");
     return;
 
 }
 
-int esNombreValido(char * nombreUsuario){
+int esNombreValido(char * nombreUsuario){ 
 
     size_t length = strlen(nombreUsuario);
     int i;
@@ -120,7 +120,7 @@ int esNombreValido(char * nombreUsuario){
 
 }
 
-int usuarioExiste(char * nombreUsuario){
+int usuarioExiste(char * nombreUsuario){ //se verifica que el usuario exista 
 
     FILE * usuariosCSV = fopen("Usuarios.csv", "r");
     if(usuariosCSV == NULL){
@@ -153,7 +153,7 @@ int usuarioExiste(char * nombreUsuario){
 
 }
 
-int ingresarUsuario(){
+int ingresarUsuario(){ /* en base a la verificacion de usuario se ingresa un nombre para acceder en caso de que este exista en la base de datos, de lo contrario se solicita la creacion de este*/
 
     char nombreUsuario[30];
 
@@ -180,7 +180,7 @@ int ingresarUsuario(){
 
 }
 
-int crearUsuario(){
+int crearUsuario(){ /*se crea un usuario nuevo realizando las comprobaciones de no repitencia de nombres ademas de las solicitudes de caracteres que puede poseer*/
 
     char nombreUsuario[30];
 
@@ -261,7 +261,7 @@ int crearUsuario(){
 
 }
 
-void BusquedaPorGenero(HashMap * map){
+void BusquedaPorGenero(HashMap * map){/*se realiza la busqueda en la base de datos de acuerdo al genero solicitado entregando todas las peliculas que correspondan al genero */
     system("cls");
     printf("Ingrese el genero que desea buscar: ");
     char genero_[50];
@@ -300,6 +300,7 @@ void BusquedaPorGenero(HashMap * map){
 
 
 void BusquedaPorDirector(HashMap *map){
+/*se busca en la base de datos la pelicula por nombre del director y se muestran por pantalla */
     system("cls");
     printf("Ingrese el nombre y apellido del director que desea buscar: ");
     char name[50];
@@ -373,12 +374,10 @@ void BusquedaPorAnio(TreeMap * map){
 
 void getTypes(List * typesList, char * types){
 
-//function that get the different types of the game :)
-
     char caracter[2] = "/";
     char * type;
 
-    type = strtok(types, caracter); //separates the string if there's more than one type//
+    type = strtok(types, caracter); 
     while(type != NULL){
 
         if(type[0] == ' '){
@@ -421,17 +420,17 @@ Pelicula * crearPeli(char * nombre,  List * genero, char *  director , char *  r
 }
 
 void importarpelis(HashMap* Pelis, TreeMap *ranking, TreeMap *peliwis){
-    //very important function that imports all the games from a csv file
+    /*funcion muy importante que importa las peliculas desde el archivo csv*/
 
     system("cls");
 
     FILE * fp;
 
-        fp = fopen("Pelis.txt", "r"); //opens the file in read
+        fp = fopen("Pelis.txt", "r"); /*abre el archivo en lectura*/
 
     char line [1024];
 
-    while( fgets(line, 1023, fp) != NULL ){  //read and get every field of the csv file
+    while( fgets(line, 1023, fp) != NULL ){  /*lee y obtiene todos los datos del archivo csv*/
 
         char * nombre = get_csv_field(line, 0);
         int anio = atoi(get_csv_field(line, 1));
@@ -454,6 +453,7 @@ void importarpelis(HashMap* Pelis, TreeMap *ranking, TreeMap *peliwis){
 }
 
 void funcionRanking (TreeMap * rankingTree){
+/**/
     int opcion;
     printf("******Submenu de ranking******\n\n");
     printf("(1) Para mostrar las peliculas mediante un ranking especifico\n");
